@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--background);
+
+  padding: 1rem 0.75rem;
+}
+
+.background {
+  position: absolute;
+}
+
+.background img {
+  opacity: 0.1;
+  transform: translateY(75px) scale(1.6);
+}
+
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.searchBtn {
+  border-radius: 0px;
+}
+
+.locationBtn {
+  background: var(--graybox);
+  border-radius: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
+  width: 34px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.locationBtn span {
+  font-size: 22px;
+}
+
+.locationBtnActive span {
+  color: var(--secondary);
+}
+
+.weatherGraphic {
+  object-fit: fill;
+  transform: scale(0.75);
+}
+
+.temperatureBar {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.bigTemp {
+  font-size: 102px;
+  margin: 0;
+}
+
+.temperatureBar span {
+  font-size: 50px;
+  transform: translateY(18px);
+  color: var(--primarytwo);
+}
+
+.currentWeatherClass {
+  font-size: 32px;
+  color: var(--primarytwo);
+}
+
+@media (min-width: 400px) {
+  .background img {
+    transform: translateY(75px) scale(1.4);
+  }
+}
+
+@media (min-width: 500px) {
+  .background img {
+    transform: translateY(55px) scale(1.2);
+  }
+}
+
+@media (min-width: 600px) {
+  .background img {
+    transform: translateY(20px) scale(1);
+  }
+  .weatherGraphic {
+    transform: scale(0.85);
+  }
+}

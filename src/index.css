@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  font-family: 'Raleway', Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --primary: #E7E7EB;
+  --primarytwo: #A09FB1;
+  --primarythree: #88869D;
+  --secondary: #3C47E9;
+  --graybox: #6E707A;
+  --background: #1E213A;
+  --backgrounddark: #100E1D;
+}
+
+.primary { color: var(--primary)}
+.primarytwo { color: var(--primarytwo)}
+.primarythree { color: var(--primarythree)}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--graybox);
+  color: var(--primary);
+  cursor: pointer;
+  transition: border-color 0.25s;
+
+  box-shadow: 2px 2px 4px 2px rgba( 0, 0, 0, 0.2 );
+}
+button:hover {
+  border-color: #dbdbdb;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+/* 
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+  button:hover {
+    border-color: #646cff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #ffffff;
+    background-color: #213547;
+  }
+  a:hover {
+    color: #8b8400;
+  }
+  button {
+    background-color: #060606;
+    color: #efefef;
+  }
+  button:hover {
+    border-color: #9b9300;
+  }
+} */
