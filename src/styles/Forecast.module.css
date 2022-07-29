@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  padding: 1.5rem;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+}
+
+.forecastCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  background: var(--background);
+}
+
+.forecastCard img {
+  transform: translateX(-6px) scale(0.55);
+  margin: -3rem -2rem -2rem;
+}
+
+.tempBar {
+  display: flex;
+  justify-content: space-around;
+  width: 6rem;
+}
+
+.tempBar p:nth-child(2) {
+  color: var(--primarytwo);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    grid-template: 1fr / repeat(5, 1fr);
+  }
+}

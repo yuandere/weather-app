@@ -12,8 +12,9 @@
 }
 
 .background img {
-  opacity: 0.1;
+  opacity: 0.05;
   transform: translateY(75px) scale(1.6);
+  object-fit: cover;
 }
 
 
@@ -49,6 +50,7 @@
 }
 
 .weatherGraphic {
+  margin-top: 1.5rem;
   object-fit: fill;
   transform: scale(0.75);
 }
@@ -61,6 +63,7 @@
 
 .bigTemp {
   font-size: 102px;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -93,5 +96,28 @@
   }
   .weatherGraphic {
     transform: scale(0.85);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: 33vw;
+  }
+  .background {
+    width: 33vw;
+    transform: scale(0.85);
+    top: 5%;
+  }
+  .weatherGraphic {
+    margin-top: 4rem;
+  }
+  .currentWeatherClass {
+    margin-top: 5rem;
+  }
+  .dateBar {
+    margin-top: 3rem;
+  }
+  .bigTemp {
+    margin-top: 2rem;
   }
 }

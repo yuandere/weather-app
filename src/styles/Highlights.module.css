@@ -1,0 +1,99 @@
+.header {
+  font-size: 28px;
+  font-weight: 800;
+  padding-left: 2.5rem;
+  margin: 1rem 0 0;
+}
+
+.container {
+  display: grid;
+  padding: 2.5rem;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr;
+  gap: 2rem;
+  height: 100vh;
+}
+
+.containerLg {
+  height: initial;
+  grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.highlightsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--background);
+  padding: 0 1rem;
+}
+
+.offset {
+  display: flex;
+  align-items: center;
+  margin: 0 0 2rem;
+}
+
+.offset p:first-child {
+  font-size: 54px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.offset p:nth-child(2) {
+  font-size: 30px;
+  transform: translateY(10px);
+  margin: 0;
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.wind {
+  display: grid;
+  place-items: center;
+  background: var(--graybox);
+  border-radius: 24px;
+  margin-right: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.wind span {
+  font-size: 16px;
+  transform: rotate(-45deg);
+}
+
+.humiditySlider {
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.humiditySlider .grey {
+  background: var(--primary);
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 12px;
+}
+
+.humiditySlider .yellow {
+  background: yellow;
+  width: 84%;
+  height: 0.5rem;
+  border-radius: 12px;
+  transform: translateY(1.5rem);
+  position: absolute;
+}
+
+.humiditySlider p {
+  align-self: flex-end;
+}
+
+.highlightsCard:nth-child(3),
+.highlightsCard:nth-child(4) {
+  justify-content: initial;
+  height: 8rem;
+}
