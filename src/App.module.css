@@ -23,5 +23,6 @@ footer span {
 @media (min-width: 1024px) {
   .App {
     flex-direction: row;
+    justify-content: center;
   }
 }

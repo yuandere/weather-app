@@ -57,7 +57,6 @@ const utils = ({ ops, data }) => {
   if (ops === 'weatherCode') {
     product = switcher(data);
   }
-	console.log(product)
   return product;
 };
 

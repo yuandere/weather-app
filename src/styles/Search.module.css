@@ -1,0 +1,18 @@
+.drawer {
+  position: absolute;
+  display: none;
+  background: var(--background);
+  z-index: 4;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0%;
+  transition: all ease-in-out 2s;
+}
+
+.drawerShow {
+  display: initial;
+
+  opacity: 100%;
+}
