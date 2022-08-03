@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useLayoutEffect, useState, useRef, createRef } from 'react';
 import tachyons from 'tachyons';
 import Sidebar from './components/Sidebar';
 import Forecast from './components/Forecast';
@@ -20,11 +20,13 @@ function App() {
 	});
 	const [weatherCond, setWeather] = useState('');
 	const [breakpoint, setBreakpoint] = useState('');
-	const [drawerVisible, setDrawer] = useState(false);
+	const [drawerState, setDrawerState] = useState(false);
 	const [windowSize, setWindowSize] = useState({
 		width: undefined,
 		height: undefined,
 	});
+
+	const parentRef =	useRef(null);
 
 	const handleResize = () => {
 		setWindowSize({
@@ -33,8 +35,26 @@ function App() {
 		});
 	};
 
+	const handleDrawer = () => {
+		let pHeight = parentRef.current.offsetHeight;
+		let pWidth = parentRef.current.offsetWidth;
+		document.documentElement.style.setProperty('--drawerHeight', `${pHeight}px`);
+		document.documentElement.style.setProperty('--drawerWidth', `${pWidth}px`);
+	};
+
 	useEffect(() => {
-		window.addEventListener('resize', handleResize);
+		fetch('./placeholder.json')
+			.then((resp) => resp.json())
+			.then((res) => {
+				setData(res);
+				setWeather(
+					utils({ ops: 'weatherCode', data: res.current_weather.weathercode })
+				);
+			});
+	}, []);
+
+	useEffect(() => {
+		window.addEventListener('resize',	handleResize);
 		handleResize();
 		if (0 < windowSize.width < 1024) {
 			setBreakpoint('notLg');
@@ -49,21 +69,16 @@ function App() {
 	}, [windowSize.width]);
 
 	useEffect(() => {
-		fetch('./placeholder.json')
-			.then((resp) => resp.json())
-			.then((res) => {
-				setData(res);
-				setWeather(
-					utils({ ops: 'weatherCode', data: res.current_weather.weathercode })
-				);
-			});
-	}, []);
+		window.addEventListener('resize', handleDrawer);
+		handleDrawer();
+		return () => window.removeEventListener('resize', handleDrawer);
+	}, [windowSize.width, windowSize.height, drawerState])
 
 	const toggleDrawer = () => {
-		if (drawerVisible === false) {
-			setDrawer(true);
+		if (drawerState === false) {
+			setDrawerState(true);
 		} else {
-			setDrawer(false);
+			setDrawerState(false);
 		}
 	};
 
@@ -74,13 +89,14 @@ function App() {
 				weatherCond={weatherCond.result}
 				source={weatherCond.source}
 				breakpoint={breakpoint}
-				drawerVisible={drawerVisible}
+				drawerState={drawerState}
 				toggleDrawer={toggleDrawer}
+				parentRef={parentRef}
 			></Sidebar>
 			{breakpoint === 'lg' || breakpoint === 'xl' ? (
 				<div className={styles.lgContainer}>
 					<Forecast data={data}></Forecast>
-					<Highlights data={data} breakpoint={breakpoint}></Highlights>
+					<Highlights data={data}></Highlights>
 					<footer className="tc pv3 ma0">
 						<p>
 							created by <span>@al doub</span> - devchallenges.io

@@ -9,17 +9,19 @@ const Sidebar = ({
 	weatherCond,
 	source,
 	breakpoint,
-	drawerVisible,
+	drawerState,
 	toggleDrawer,
+	parentRef
 }) => {
 	const sourceLocation = `../../${source}.png`;
 	const temp = Math.floor(data.current_weather.temperature);
 	return (
 		<div
 			className={breakpoint === 'xl' ? styles.containerxl : styles.container}
+			ref={parentRef}
 		>
 			<Search
-				drawerVisible={drawerVisible}
+				drawerState={drawerState}
 				toggleDrawer={toggleDrawer}
 			></Search>
 			<div className={styles.background}>

@@ -24,6 +24,9 @@
   --graybox: #6E707A;
   --background: #1E213A;
   --backgrounddark: #100E1D;
+
+  --drawerHeight: 100%;
+  --drawerWidth: 100%;
 }
 
 .primary { color: var(--primary)}
