@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState, useRef, createRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import tachyons from 'tachyons';
 import Sidebar from './components/Sidebar';
 import Forecast from './components/Forecast';
@@ -8,6 +8,9 @@ import styles from './App.module.css';
 
 const API_URL =
 	'https://api.open-meteo.com/v1/forecast?latitude=34.05&longitude=-118.24&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FLos_Angeles&start_date=2022-07-28&end_date=2022-07-28';
+const API_KEY =
+	'AIzaSyB-tpQMrst7JTFzEA0h-JiJcU6vB3vAFJg';
+
 
 function App() {
 	const [data, setData] = useState({
@@ -38,8 +41,10 @@ function App() {
 	const handleDrawer = () => {
 		let pHeight = parentRef.current.offsetHeight;
 		let pWidth = parentRef.current.offsetWidth;
+		let pOffset = parentRef.current.getBoundingClientRect().left;
 		document.documentElement.style.setProperty('--drawerHeight', `${pHeight}px`);
 		document.documentElement.style.setProperty('--drawerWidth', `${pWidth}px`);
+		document.documentElement.style.setProperty('--drawerOffset', `${pOffset}px`);
 	};
 
 	useEffect(() => {
@@ -65,6 +70,7 @@ function App() {
 		if (1440 <= windowSize.width) {
 			setBreakpoint('xl');
 		}
+		handleDrawer;
 		return () => window.removeEventListener('resize', handleResize);
 	}, [windowSize.width]);
 

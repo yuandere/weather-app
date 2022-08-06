@@ -27,6 +27,7 @@
 
   --drawerHeight: 100%;
   --drawerWidth: 100%;
+  --drawerOffset: 0px;
 }
 
 .primary { color: var(--primary)}

@@ -1,14 +1,119 @@
 .drawer {
   position: absolute;
-  display: none;
-  background: var(--graybox);
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  padding: 1rem 0.75rem;
   z-index: 4;
   left: 0;
   top: 0;
   height: var(--drawerHeight);
   width: var(--drawerWidth);
+  margin-left: var(--drawerOffset);
+  visibility: hidden;
 }
 
 .drawerShow {
-  display: initial;
+  visibility: visible;
+}
+
+.drawerClickoff {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.212);
+  visibility: hidden;
+}
+
+.topBar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.closeBtn {
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+
+.searchBar {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 0.5rem;
+}
+
+.searchContainer {
+  border: solid 1px var(--primarytwo);
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  padding: 0 0.6rem;
+}
+
+.searchContainer span {
+  padding-right: 0.25rem;
+  color: var(--primarythree)
+}
+
+.searchContainer input {
+  background: none;
+  border: none;
+  color: var(--primary);
+  outline: none;
+  width: 95%;
+  height: 2.4rem;
+}
+
+.searchBtn {
+  background: var(--secondary);
+  border-radius: 0;
+}
+
+.citiesContainer {
+  padding: 0;
+}
+
+.citiesContainer li {
+  border-radius: 0;
+  border: 1px solid transparent;
+  padding: 1rem 0.75rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--primary);
+  cursor: pointer;
+  transition: border-color 0.25s;
+
+  list-style: none;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.citiesContainer li:hover {
+  border-color: var(--primarythree);
+}
+
+.citiesContainer li:focus,
+.citiesContainer li:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.citiesContainer li p {
+  margin: 0;
+}
+
+.citiesContainer span {
+  color: var(--background);
+  transition: color 0.25s;
+}
+
+.citiesContainer li:hover span {
+  color: var(--primarythree);
 }

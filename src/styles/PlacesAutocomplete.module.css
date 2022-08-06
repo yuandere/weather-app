@@ -1,0 +1,60 @@
+.searchContainer {
+  display: flex;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border: solid 1px var(--primarytwo);
+  width: 100%;
+  padding: 0 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.inputContainer span {
+  padding-right: 0.25rem;
+  color: var(--primarythree);
+}
+
+.searchBox {
+  background: none;
+  border: none;
+  color: var(--primary);
+  outline: none;
+  width: 95%;
+  height: 2.4rem;
+}
+
+.searchBtn {
+  background: var(--secondary);
+  border-radius: 0;
+}
+
+.suggestions {
+  background: var(--background);
+  border: 1px dashed white;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestions li {
+  cursor: pointer;
+  list-style: none;
+}
+
+.suggestions li:hover {
+  color: var(--background);
+  background: white;
+}
+
+.attr {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.0575em; /* 0.69px */
+  text-transform: uppercase;
+  color: #5F6368;
+}
