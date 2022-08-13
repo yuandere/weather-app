@@ -33,14 +33,17 @@
 
 .suggestions {
   background: var(--background);
-  border: 1px dashed white;
-  margin: 0;
-  padding: 0;
+  border: 1px solid var(--primarytwo);
+  margin: 0.5rem 0 0;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 5;
 }
 
 .suggestions li {
   cursor: pointer;
   list-style: none;
+  padding: 0.75rem 0;
 }
 
 .suggestions li:hover {
@@ -48,7 +51,9 @@
   background: white;
 }
 
-.attr {
+.suggestions p {
+  margin: 0.5rem 0 0;
+  text-align: end;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -56,5 +61,11 @@
   line-height: 14px;
   letter-spacing: 0.0575em; /* 0.69px */
   text-transform: uppercase;
-  color: #5F6368;
+  color: white;
+}
+
+.attr {
+  letter-spacing: 0.0575em;
+  font-weight: 700;
+  font-size: 16px;
 }

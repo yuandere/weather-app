@@ -5,7 +5,7 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from 'react-cool-onclickoutside';
 import styles from '../styles/PlacesAutocomplete.module.css';
 
-const PlacesAutocomplete = ({}) => {
+const PlacesAutocomplete = ({ setSuggestionsState }) => {
 	const {
 		ready,
 		value,
@@ -23,6 +23,7 @@ const PlacesAutocomplete = ({}) => {
 		// When user clicks outside of the component, we can dismiss
 		// the searched suggestions by calling this method
 		clearSuggestions();
+		setSuggestionsState(false);
 	});
 
 	const handleInput = (e) => {
@@ -45,7 +46,7 @@ const PlacesAutocomplete = ({}) => {
 			});
 		};
 
-	const renderSuggestions = () =>
+	const renderSuggestions = () => 
 		data.map((suggestion) => {
 			const {
 				place_id,
@@ -62,11 +63,12 @@ const PlacesAutocomplete = ({}) => {
 	return (
 		<div ref={ref}>
 			<div className={styles.searchContainer}>
-				<div  className={styles.inputContainer}>
+				<div className={styles.inputContainer}>
 					<span className="material-icons">search</span>
 					<input
 						value={value}
 						onChange={handleInput}
+						onFocus={()=> setSuggestionsState(true)}
 						disabled={!ready}
 						placeholder="search location"
 						className={styles.searchBox}
@@ -76,7 +78,10 @@ const PlacesAutocomplete = ({}) => {
 			</div>
 			{/* We can use the "status" to decide whether we should display the dropdown or not */}
 			{status === 'OK' && (
-				<ul className={styles.suggestions}>{renderSuggestions()}</ul>
+				<ul className={styles.suggestions}>
+          {renderSuggestions()}
+          <p>results by <span className={styles.attr}>google</span></p>
+          </ul>
 			)}
 		</div>
 	);

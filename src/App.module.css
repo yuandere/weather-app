@@ -5,13 +5,14 @@
 }
 
 .lgContainer {
+  background: var(--backgrounddark);
   display: flex;
   flex-direction: column;
 }
 
 footer {
   margin: 2rem auto;
-  font-family: 'Poppins';
+  font-family: 'Roboto';
   color: var(--primarytwo);
 }
 
@@ -23,6 +24,6 @@ footer span {
 @media (min-width: 1024px) {
   .App {
     flex-direction: row;
-    justify-content: center;
+    
   }
 }

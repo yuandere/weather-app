@@ -5,13 +5,17 @@ import styles from '../styles/Sidebar.module.css';
 const Sidebar = ({
 	data,
 	date = 'Fri, 5 Jun',
-	location = 'Helsinki',
+	location = 'Los Angeles',
 	weatherCond,
 	source,
 	breakpoint,
 	drawerState,
 	toggleDrawer,
-	parentRef
+	setDrawerState,
+	suggestionsState,
+	setSuggestionsState,
+	parentRef,
+	userParams
 }) => {
 	const sourceLocation = `../../${source}.png`;
 	const temp = Math.floor(data.current_weather.temperature);
@@ -23,6 +27,10 @@ const Sidebar = ({
 			<Search
 				drawerState={drawerState}
 				toggleDrawer={toggleDrawer}
+				setDrawerState={setDrawerState}
+				suggestionsState={suggestionsState}
+				setSuggestionsState={setSuggestionsState}
+				userParams={userParams}
 			></Search>
 			<div className={styles.background}>
 				<img src="../../Cloud-background.png"></img>

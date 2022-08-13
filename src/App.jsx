@@ -20,15 +20,17 @@ function App() {
 		tempUnit: 'fahrenheit',
 		timezone: 'America%Los_Angeles',
 		date: '2022-07-28',
+		searchLat: '34',
+		searchLng: '-118.25',
 	});
 	const [weatherCond, setWeather] = useState('');
 	const [breakpoint, setBreakpoint] = useState('');
 	const [drawerState, setDrawerState] = useState(false);
+	const [suggestionsState, setSuggestionsState] = useState(false);
 	const [windowSize, setWindowSize] = useState({
 		width: undefined,
 		height: undefined,
 	});
-
 	const parentRef =	useRef(null);
 
 	const handleResize = () => {
@@ -78,7 +80,13 @@ function App() {
 		window.addEventListener('resize', handleDrawer);
 		handleDrawer();
 		return () => window.removeEventListener('resize', handleDrawer);
-	}, [windowSize.width, windowSize.height, drawerState])
+	}, [windowSize.width, windowSize.height, breakpoint])
+
+	useEffect(()=> {
+		setTimeout(()=> {
+			handleDrawer()
+		}, 100)
+	}, [])
 
 	const toggleDrawer = () => {
 		if (drawerState === false) {
@@ -97,7 +105,11 @@ function App() {
 				breakpoint={breakpoint}
 				drawerState={drawerState}
 				toggleDrawer={toggleDrawer}
+				setDrawerState={setDrawerState}
+				suggestionsState={suggestionsState}
+				setSuggestionsState={setSuggestionsState}
 				parentRef={parentRef}
+				userParams={userParams}
 			></Sidebar>
 			{breakpoint === 'lg' || breakpoint === 'xl' ? (
 				<div className={styles.lgContainer}>
@@ -105,7 +117,7 @@ function App() {
 					<Highlights data={data}></Highlights>
 					<footer className="tc pv3 ma0">
 						<p>
-							created by <span>@al doub</span> - devchallenges.io
+							created by <span>@yuandere</span> - devchallenges.io
 						</p>
 					</footer>
 				</div>
@@ -115,7 +127,7 @@ function App() {
 					<Highlights data={data}></Highlights>
 					<footer className="tc pv3 ma0">
 						<p>
-							created by <span>@al doub</span> - devchallenges.io
+							created by <span>@yuandere</span> - devchallenges.io
 						</p>
 					</footer>
 				</>
