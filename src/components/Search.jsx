@@ -10,6 +10,7 @@ const Search = ({
 	suggestionsState,
 	setSuggestionsState,
 	userParams,
+	setUserParams
 }) => {
 	const ref = useOnclickOutside(() => {
 		setDrawerState(false);
@@ -31,17 +32,10 @@ const Search = ({
 					close
 				</span>
 			</div>
-			{/* <div className="flex justify-between items-center">
-					<form className={styles.searchBar}>
-						<div className={styles.searchContainer}>
-							<span className="material-icons">search</span>
-							<input placeholder="search location"></input>
-						</div>
-					</form>
-					<button className={styles.searchBtn}>Search</button>
-				</div> */}
 			<PlacesAutocomplete
 				setSuggestionsState={setSuggestionsState}
+				userParams={userParams}
+				setUserParams={setUserParams}
 			></PlacesAutocomplete>
 			{suggestionsState === false ? (
 				<ul className={styles.citiesContainer}>

@@ -3,11 +3,12 @@ import tachyons from 'tachyons';
 import Sidebar from './components/Sidebar';
 import Forecast from './components/Forecast';
 import Highlights from './components/Highlights';
-import utils from './utils';
+import { conditionSwitcher, linkBuilder } from './utils';
 import styles from './App.module.css';
+// import { loadConfigFromFile } from 'vite';
 
 const API_URL =
-	'https://api.open-meteo.com/v1/forecast?latitude=34.05&longitude=-118.24&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=America%2FLos_Angeles&start_date=2022-07-28&end_date=2022-07-28';
+	'https://api.open-meteo.com/v1/forecast?latitude=34.05&longitude=-118.24&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=2022-08-15&end_date=2022-08-20';
 const API_KEY =
 	'AIzaSyB-tpQMrst7JTFzEA0h-JiJcU6vB3vAFJg';
 
@@ -15,11 +16,18 @@ const API_KEY =
 function App() {
 	const [data, setData] = useState({
 		current_weather: { temperature: 88 },
+		hourly: { 
+			relativehumidity_2m: [ { 0: 71 } ],
+			surface_pressure: [ { 0: 1001.9 }],
+			cloudcover: [ { 0: 50 } ],
+		}
 	});
 	const [userParams, setUserParams] = useState({
 		tempUnit: 'fahrenheit',
-		timezone: 'America%Los_Angeles',
-		date: '2022-07-28',
+		// timezone: 'America%Los_Angeles',
+		location: 'Los Angeles',
+		date: '2022-06-05',
+		displayDate: 'Fri, Jun 5',
 		searchLat: '34',
 		searchLng: '-118.25',
 	});
@@ -31,7 +39,6 @@ function App() {
 		width: undefined,
 		height: undefined,
 	});
-	const parentRef =	useRef(null);
 
 	const handleResize = () => {
 		setWindowSize({
@@ -49,16 +56,27 @@ function App() {
 		document.documentElement.style.setProperty('--drawerOffset', `${pOffset}px`);
 	};
 
+	useEffect(()=> {
+		const options = { weekday: 'short', month: 'short', day: 'numeric'};
+		const date = new Date().getFullYear() + '-' + new Date().toLocaleDateString().replaceAll('/','-').slice(0, -5);
+		const displayDate = new Date().toLocaleDateString(undefined, options);
+		setUserParams({ 
+			date: date,
+			displayDate: displayDate,
+		});
+	}, [])
+
 	useEffect(() => {
 		fetch('./placeholder.json')
+		// fetch(APILinkBuilder())
 			.then((resp) => resp.json())
 			.then((res) => {
 				setData(res);
 				setWeather(
-					utils({ ops: 'weatherCode', data: res.current_weather.weathercode })
+					conditionSwitcher(res.current_weather.weathercode)
 				);
 			});
-	}, []);
+	}, [userParams.location, userParams.tempUnit]);
 
 	useEffect(() => {
 		window.addEventListener('resize',	handleResize);
@@ -84,7 +102,8 @@ function App() {
 
 	useEffect(()=> {
 		setTimeout(()=> {
-			handleDrawer()
+			handleDrawer();
+			APILinkBuilder()
 		}, 100)
 	}, [])
 
@@ -95,6 +114,12 @@ function App() {
 			setDrawerState(false);
 		}
 	};
+
+	const APILinkBuilder = () => {
+		return(linkBuilder(userParams.searchLat, userParams.searchLng, userParams.tempUnit, userParams.date));
+	};
+
+	const parentRef =	useRef(null);
 
 	return (
 		<div className={styles.App}>
@@ -110,6 +135,7 @@ function App() {
 				setSuggestionsState={setSuggestionsState}
 				parentRef={parentRef}
 				userParams={userParams}
+				setUserParams={setUserParams}
 			></Sidebar>
 			{breakpoint === 'lg' || breakpoint === 'xl' ? (
 				<div className={styles.lgContainer}>

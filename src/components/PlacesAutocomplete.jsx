@@ -5,7 +5,11 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from 'react-cool-onclickoutside';
 import styles from '../styles/PlacesAutocomplete.module.css';
 
-const PlacesAutocomplete = ({ setSuggestionsState }) => {
+const PlacesAutocomplete = ({ 
+	setSuggestionsState,
+	userParams,
+	setUserParams
+ }) => {
 	const {
 		ready,
 		value,
@@ -43,6 +47,10 @@ const PlacesAutocomplete = ({ setSuggestionsState }) => {
 			getGeocode({ address: description }).then((results) => {
 				const { lat, lng } = getLatLng(results[0]);
 				console.log('📍 Coordinates: ', { lat, lng });
+				setUserParams({ 
+					searchLat: Math.round((lat + Number.EPSILON) * 100) / 100,
+					searchLng: Math.round((lng + Number.EPSILON) * 100) / 100 
+				})
 			});
 		};
 

@@ -2,7 +2,12 @@
   background: var(--backgrounddark);
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
+
+/* .spacer {
+  width: 6vw;
+} */
 
 .lgContainer {
   background: var(--backgrounddark);
@@ -24,6 +29,5 @@ footer span {
 @media (min-width: 1024px) {
   .App {
     flex-direction: row;
-    
   }
 }

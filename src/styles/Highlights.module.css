@@ -63,7 +63,7 @@
 
 .wind span {
   font-size: 16px;
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
 }
 
 .humiditySlider {

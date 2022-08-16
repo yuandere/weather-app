@@ -1,4 +1,4 @@
-const switcher = (data) => {
+export const conditionSwitcher = (data) => {
     let result = '';
 		let source = '';
 		switch (data) {
@@ -52,12 +52,63 @@ const switcher = (data) => {
     return bundle;
 }
 
-const utils = ({ ops, data }) => {
-  let product = {};
-  if (ops === 'weatherCode') {
-    product = switcher(data);
-  }
-  return product;
-};
+export const timezoneHandler = (offset) => {
+	let str = '';
+	switch (offset) {
+		case 8:	str = 'America/Anchorage'
+			break;
+			case 7:	str = 'America/Los_Angeles'
+			break;
+			case 6:	str = 'America/Denver'
+			break;
+			case 5:	str = 'America/Chicago'
+			break;
+			case 4:	str = 'America/New_York'
+			break;
+			case 3:	str = 'America/Sao_Paulo'
+			break;
+			// case 2:	str = 'America/Sao_Paulo'
+			// break;
+			// case 1:	str = 'America/Sao_Paulo'
+			// break;
+			case 0:	str = 'Europe/London'
+			break;
+			case -1:	str = 'Europe/Berlin'
+			break;
+			case -2:	str = 'Africa/Cairo'
+			break;
+			case -3:	str = 'Europe/Moscow'
+			break;
+			case -7:	str = 'Asia/Bangkok'
+			break;
+			case -8:	str = 'Asia/Singapore'
+			break;
+			case -9:	str = 'Asia/Tokyo'
+			break;
+			case -10:	str = 'Australia/Sydney'
+			break;
+			case -13:	str = 'Pacific/Auckland'
+			break;
+		default:	str = 'needs auto'; console.log(str)
+			break;
+	}
+	return str
+}
 
-export default utils;
+export const linkBuilder = (lat, lng, tempUnit, date) => {
+		return (`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=${date}&end_date=${date}`) 
+}
+
+export const windHandler = (angle) => {
+	let dir = '';
+	if ((0 < angle && angle <= 30) || (330 < angle && angle <= 360)) {dir = 'N'}
+	else if (30 < angle && angle <= 60) {dir = 'NNE'}
+	else if (60 < angle && angle <= 120) {dir = 'E'}
+	else if (120 < angle && angle <= 150) {dir = 'ESE'}
+	else if (150 < angle && angle <= 210) {dir = 'S'}
+	else if (210 < angle && angle <= 240) {dir = 'SSW'}
+	else if (240 < angle && angle <= 300) {dir = 'W'}
+	else if (300 < angle && angle <= 330) {dir = 'NNW'}
+	else {dir = 'oops'}
+	return dir
+}

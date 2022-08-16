@@ -1,11 +1,17 @@
 import classNames from 'classnames';
+import { windHandler } from '../utils'
 import styles from '../styles/Highlights.module.css'
 
 
 
-const Highlights = ({ resizeFlag, humidity = 50, windDir = 'WSW' }) => {
+const Highlights = ({ 
+  data, 
+}) => {
   const mediaQuery = window.matchMedia('(min-width: 1024px)');
+  const currentHr = new Date().getHours();
+  const humidity = data.hourly.relativehumidity_2m[currentHr];
   const humidityVal = humidity*0.01*160;
+  const windAngle = data.current_weather.winddirection;
   return (
     <>
     <h2 className={styles.header}>Today's Highlights</h2>
@@ -13,16 +19,16 @@ const Highlights = ({ resizeFlag, humidity = 50, windDir = 'WSW' }) => {
       <div className={styles.highlightsCard}>
         <p>Wind status</p>
         <div className={styles.offset}>
-          <p>7</p>
-          <p>mph</p>
+          <p>{data.current_weather.windspeed}</p>
+          <p>&nbsp;mph</p>
         </div>
         <div className={styles.inline}>
           <div className={styles.wind}>
-            <span className="material-icons">
+            <span className="material-icons" id='indicator'>
               near_me
             </span>
           </div>
-          <p className='f6'>WSW</p>
+          <p className='f6'>{windHandler(windAngle)}</p>
         </div>
       </div>
 
@@ -45,23 +51,27 @@ const Highlights = ({ resizeFlag, humidity = 50, windDir = 'WSW' }) => {
       </div>
 
       <div className={styles.highlightsCard}>
-        <p>Visibility</p>
+        <p>Cloud Cover</p>
         <div className={styles.offset}>
-          <p>6.4</p>
-          <p>&nbsp;miles</p>
+          <p>{data.hourly.cloudcover[currentHr]}</p>
+          <p>%</p>
         </div>
       </div>
 
       <div className={styles.highlightsCard}>
         <p>Air Pressure</p>
         <div className={styles.offset}>
-          <p>998</p>
+          <p>{Math.round(data.hourly.surface_pressure[currentHr])}</p>
           <p>&nbsp;mb</p>
         </div>
       </div>
       <style>{`
       #yellow {
         width: ${humidityVal}px;
+      }
+      #indicator {
+        transform: rotate(${windAngle-45}deg);
+      }
       `}</style>
     </div>
     </>

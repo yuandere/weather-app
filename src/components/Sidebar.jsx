@@ -15,7 +15,8 @@ const Sidebar = ({
 	suggestionsState,
 	setSuggestionsState,
 	parentRef,
-	userParams
+	userParams,
+	setUserParams
 }) => {
 	const sourceLocation = `../../${source}.png`;
 	const temp = Math.floor(data.current_weather.temperature);
@@ -31,6 +32,7 @@ const Sidebar = ({
 				suggestionsState={suggestionsState}
 				setSuggestionsState={setSuggestionsState}
 				userParams={userParams}
+				setUserParams={setUserParams}
 			></Search>
 			<div className={styles.background}>
 				<img src="../../Cloud-background.png"></img>
