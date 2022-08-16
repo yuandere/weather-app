@@ -98,7 +98,7 @@ function App() {
 		window.addEventListener('resize', handleDrawer);
 		handleDrawer();
 		return () => window.removeEventListener('resize', handleDrawer);
-	}, [windowSize.width, windowSize.height, breakpoint])
+	}, [windowSize.width, windowSize.height, breakpoint, drawerState])
 
 	useEffect(()=> {
 		setTimeout(()=> {

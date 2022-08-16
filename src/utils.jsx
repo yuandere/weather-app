@@ -52,51 +52,8 @@ export const conditionSwitcher = (data) => {
     return bundle;
 }
 
-export const timezoneHandler = (offset) => {
-	let str = '';
-	switch (offset) {
-		case 8:	str = 'America/Anchorage'
-			break;
-			case 7:	str = 'America/Los_Angeles'
-			break;
-			case 6:	str = 'America/Denver'
-			break;
-			case 5:	str = 'America/Chicago'
-			break;
-			case 4:	str = 'America/New_York'
-			break;
-			case 3:	str = 'America/Sao_Paulo'
-			break;
-			// case 2:	str = 'America/Sao_Paulo'
-			// break;
-			// case 1:	str = 'America/Sao_Paulo'
-			// break;
-			case 0:	str = 'Europe/London'
-			break;
-			case -1:	str = 'Europe/Berlin'
-			break;
-			case -2:	str = 'Africa/Cairo'
-			break;
-			case -3:	str = 'Europe/Moscow'
-			break;
-			case -7:	str = 'Asia/Bangkok'
-			break;
-			case -8:	str = 'Asia/Singapore'
-			break;
-			case -9:	str = 'Asia/Tokyo'
-			break;
-			case -10:	str = 'Australia/Sydney'
-			break;
-			case -13:	str = 'Pacific/Auckland'
-			break;
-		default:	str = 'needs auto'; console.log(str)
-			break;
-	}
-	return str
-}
-
 export const linkBuilder = (lat, lng, tempUnit, date) => {
-		return (`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=${date}&end_date=${date}`) 
+		return (`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=${date}&end_date=${date+5}`) 
 }
 
 export const windHandler = (angle) => {

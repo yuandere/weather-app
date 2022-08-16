@@ -3,11 +3,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 95vh;
 }
-
-/* .spacer {
-  width: 6vw;
-} */
 
 .lgContainer {
   background: var(--backgrounddark);

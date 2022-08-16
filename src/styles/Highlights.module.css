@@ -8,14 +8,12 @@
 .container {
   display: grid;
   padding: 2.5rem;
-  grid-template: 1fr 1fr 1fr 1fr / 1fr;
+  grid-template: 3fr 3fr 2fr 2fr / 1fr;
   gap: 2rem;
-  height: 100vh;
 }
 
 .containerLg {
-  height: initial;
-  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-template: 3fr 2fr / 1fr 1fr;
 }
 
 .highlightsCard {
@@ -24,7 +22,7 @@
   justify-content: center;
   align-items: center;
   background: var(--background);
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .offset {
@@ -63,7 +61,6 @@
 
 .wind span {
   font-size: 16px;
-  /* transform: rotate(-45deg); */
 }
 
 .humiditySlider {
@@ -90,10 +87,4 @@
 
 .humiditySlider p {
   align-self: flex-end;
-}
-
-.highlightsCard:nth-child(3),
-.highlightsCard:nth-child(4) {
-  justify-content: initial;
-  height: 8rem;
 }
