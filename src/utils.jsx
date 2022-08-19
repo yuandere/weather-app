@@ -52,8 +52,8 @@ export const conditionSwitcher = (data) => {
     return bundle;
 }
 
-export const linkBuilder = (lat, lng, tempUnit, date) => {
-		return (`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=${date}&end_date=${date+5}`) 
+export const linkBuilder = (lat, lng, tempUnit, dateStart, dateEnd) => {
+		return (`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relativehumidity_2m,surface_pressure,weathercode,cloudcover,windspeed_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=mph&precipitation_unit=inch&timezone=auto&start_date=${dateStart}&end_date=${dateEnd}`) 
 }
 
 export const windHandler = (angle) => {
@@ -68,4 +68,13 @@ export const windHandler = (angle) => {
 	else if (300 < angle && angle <= 330) {dir = 'NNW'}
 	else {dir = 'oops'}
 	return dir
+}
+
+export const dateHandler = () => {
+	const options = { weekday: 'short', month: 'short', day: 'numeric'};
+	const arr = [2, 1, 1, 1];
+	const date = new Date();
+	const arr2 = arr.map(n =>	new Date(date.setDate(date.getDate() + n)).toLocaleDateString(undefined, options));
+	arr2.unshift('Tomorrow');
+	return arr2
 }

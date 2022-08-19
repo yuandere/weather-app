@@ -9,9 +9,9 @@ const Highlights = ({
 }) => {
   const mediaQuery = window.matchMedia('(min-width: 1024px)');
   const currentHr = new Date().getHours();
-  const humidity = data.hourly.relativehumidity_2m[currentHr];
+  const humidity = data?.hourly.relativehumidity_2m[currentHr];
   const humidityVal = humidity*0.01*160;
-  const windAngle = data.current_weather.winddirection;
+  const windAngle = data?.current_weather.winddirection;
   return (
     <>
     <h2 className={styles.header}>Today's Highlights</h2>
@@ -19,7 +19,7 @@ const Highlights = ({
       <div className={styles.highlightsCard}>
         <p>Wind status</p>
         <div className={styles.offset}>
-          <p>{data.current_weather.windspeed}</p>
+          <p>{data?.current_weather.windspeed}</p>
           <p>&nbsp;mph</p>
         </div>
         <div className={styles.inline}>
@@ -53,7 +53,7 @@ const Highlights = ({
       <div className={styles.highlightsCard}>
         <p>Cloud Cover</p>
         <div className={styles.offset}>
-          <p>{data.hourly.cloudcover[currentHr]}</p>
+          <p>{data?.hourly.cloudcover[currentHr]}</p>
           <p>%</p>
         </div>
       </div>
@@ -61,8 +61,8 @@ const Highlights = ({
       <div className={styles.highlightsCard}>
         <p>Air Pressure</p>
         <div className={styles.offset}>
-          <p>{Math.round(data.hourly.surface_pressure[currentHr])}</p>
-          <p>&nbsp;mb</p>
+          <p>{Math.round(data?.hourly.surface_pressure[currentHr])}</p>
+          <p>&nbsp;hPa</p>
         </div>
       </div>
       <style>{`

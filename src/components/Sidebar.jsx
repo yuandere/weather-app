@@ -4,10 +4,10 @@ import styles from '../styles/Sidebar.module.css';
 
 const Sidebar = ({
 	data,
-	date = 'Fri, 5 Jun',
-	location = 'Los Angeles',
-	weatherCond,
-	source,
+	dates,
+	tempUnit,
+	location = 'Los Angeles TBD',
+	forecastConditions,
 	breakpoint,
 	drawerState,
 	toggleDrawer,
@@ -15,10 +15,10 @@ const Sidebar = ({
 	suggestionsState,
 	setSuggestionsState,
 	parentRef,
-	userParams,
-	setUserParams
+	searchParams,
+	setSearchParams
 }) => {
-	const sourceLocation = `../../${source}.png`;
+	const sourceLocation = `../../${forecastConditions[0].source}.png`;
 	const temp = Math.floor(data.current_weather.temperature);
 	return (
 		<div
@@ -31,8 +31,8 @@ const Sidebar = ({
 				setDrawerState={setDrawerState}
 				suggestionsState={suggestionsState}
 				setSuggestionsState={setSuggestionsState}
-				userParams={userParams}
-				setUserParams={setUserParams}
+				searchParams={searchParams}
+				setSearchParams={setSearchParams}
 			></Search>
 			<div className={styles.background}>
 				<img src="../../Cloud-background.png"></img>
@@ -52,15 +52,15 @@ const Sidebar = ({
 			</div>
 			<div className={styles.temperatureBar}>
 				<h1 className={styles.bigTemp}>{temp}</h1>
-				<span>°F</span>
+				<span>°{tempUnit}</span>
 			</div>
-			<h2 className={styles.currentWeatherClass}>{weatherCond}</h2>
+			<h2 className={styles.currentWeatherClass}>{forecastConditions[0].result}</h2>
 			<p className={classNames(styles.dateBar, 'mv1', 'primarythree')}>
-				Today - {date}
+				Today - {dates.displayDate}
 			</p>
 			<div className="mb4 flex items-center primarytwo">
 				<span className="material-icons">place</span>
-				<p className="mv2">{location}</p>
+				<p className="mv2">{searchParams.location}</p>
 			</div>
 		</div>
 	);

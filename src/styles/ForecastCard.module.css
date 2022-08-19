@@ -1,9 +1,3 @@
-.container {
-  display: grid;
-  padding: 1.5rem;
-  grid-template: 1fr 1fr 1fr / 1fr 1fr;
-}
-
 .forecastCard {
   display: flex;
   flex-direction: column;
@@ -14,8 +8,7 @@
 
 .forecastCard img {
   transform: translateX(-6px) scale(0.55);
-  height: 75%;
-  margin: -2.5rem -2rem -2rem;
+  margin: -3rem -2rem -2rem;
 }
 
 .tempBar {
@@ -26,10 +19,4 @@
 
 .tempBar p:nth-child(2) {
   color: var(--primarytwo);
-}
-
-@media (min-width: 1024px) {
-  .container {
-    grid-template: 1fr / repeat(5, 1fr);
-  }
 }

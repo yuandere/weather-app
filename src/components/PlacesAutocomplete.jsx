@@ -7,8 +7,8 @@ import styles from '../styles/PlacesAutocomplete.module.css';
 
 const PlacesAutocomplete = ({ 
 	setSuggestionsState,
-	userParams,
-	setUserParams
+	searchParams,
+	setSearchParams
  }) => {
 	const {
 		ready,
@@ -47,9 +47,10 @@ const PlacesAutocomplete = ({
 			getGeocode({ address: description }).then((results) => {
 				const { lat, lng } = getLatLng(results[0]);
 				console.log('📍 Coordinates: ', { lat, lng });
-				setUserParams({ 
+				setSearchParams({ 
 					searchLat: Math.round((lat + Number.EPSILON) * 100) / 100,
-					searchLng: Math.round((lng + Number.EPSILON) * 100) / 100 
+					searchLng: Math.round((lng + Number.EPSILON) * 100) / 100,
+					location: results[0].formatted_address
 				})
 			});
 		};

@@ -9,8 +9,8 @@ const Search = ({
 	setDrawerState,
 	suggestionsState,
 	setSuggestionsState,
-	userParams,
-	setUserParams
+	searchParams,
+	setSearchParams
 }) => {
 	const ref = useOnclickOutside(() => {
 		setDrawerState(false);
@@ -34,8 +34,8 @@ const Search = ({
 			</div>
 			<PlacesAutocomplete
 				setSuggestionsState={setSuggestionsState}
-				userParams={userParams}
-				setUserParams={setUserParams}
+				searchParams={searchParams}
+				setSearchParams={setSearchParams}
 			></PlacesAutocomplete>
 			{suggestionsState === false ? (
 				<ul className={styles.citiesContainer}>

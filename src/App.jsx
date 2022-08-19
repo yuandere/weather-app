@@ -20,18 +20,27 @@ function App() {
 			relativehumidity_2m: [ { 0: 71 } ],
 			surface_pressure: [ { 0: 1001.9 }],
 			cloudcover: [ { 0: 50 } ],
+		},
+		daily: {
+			weathercode: [ { 0: 1 } ],
+			temperature_2m_max: [ { 0: 87.2 } ],
+			temperature_2m_min: [ { 0: 63.4 } ]
 		}
 	});
-	const [userParams, setUserParams] = useState({
-		tempUnit: 'fahrenheit',
-		// timezone: 'America%Los_Angeles',
+	const [searchParams, setSearchParams] = useState({
 		location: 'Los Angeles',
-		date: '2022-06-05',
-		displayDate: 'Fri, Jun 5',
 		searchLat: '34',
 		searchLng: '-118.25',
 	});
-	const [weatherCond, setWeather] = useState('');
+	const [dates, setDates] = useState({
+		dateStart: '2022-08-16',
+		dateEnd: '2022-08-21',
+		displayDate: 'Tue, Aug 16',
+	})
+	const [forecastConditions, setForecast] = useState([
+		{ result: 'Mainly clear', source: 'Clear' }
+	]);
+	const [tempUnit, setTempUnit] = useState('F');
 	const [breakpoint, setBreakpoint] = useState('');
 	const [drawerState, setDrawerState] = useState(false);
 	const [suggestionsState, setSuggestionsState] = useState(false);
@@ -57,26 +66,43 @@ function App() {
 	};
 
 	useEffect(()=> {
+		const date = new Date();
 		const options = { weekday: 'short', month: 'short', day: 'numeric'};
-		const date = new Date().getFullYear() + '-' + new Date().toLocaleDateString().replaceAll('/','-').slice(0, -5);
-		const displayDate = new Date().toLocaleDateString(undefined, options);
-		setUserParams({ 
-			date: date,
+		const dateStart = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+		const displayDate = date.toLocaleDateString(undefined, options);
+		const dateMax = new Date(date.setDate(date.getDate() + 5));
+		const dateEnd = dateMax.getFullYear() + '-' + String(dateMax.getMonth() + 1).padStart(2, '0') + '-' + String(dateMax.getDate()).padStart(2, '0');
+		setDates({ 
+			dateStart: dateStart,
+			dateEnd: dateEnd, 
 			displayDate: displayDate,
 		});
 	}, [])
 
 	useEffect(() => {
+
+		let tempLong = '';
+		if (tempUnit === 'F') {tempLong = 'fahrenheit'}
+		else {tempLong = 'Celsius'}
 		fetch('./placeholder.json')
-		// fetch(APILinkBuilder())
+		// fetch(API_URL)
+		// fetch(linkBuilder(searchParams.searchLat, searchParams.searchLng, tempLong, dates.dateStart, dates.dateEnd))
 			.then((resp) => resp.json())
 			.then((res) => {
 				setData(res);
-				setWeather(
-					conditionSwitcher(res.current_weather.weathercode)
-				);
+				setForecast(res.daily.weathercode.map(x => conditionSwitcher(x)));
+				console.log('weather api called')
 			});
-	}, [userParams.location, userParams.tempUnit]);
+		
+	}, [searchParams.location, tempUnit]);
+
+	useEffect(()=> {
+		console.log(dates.dateStart, dates.dateEnd)
+	}, [dates.dateStart])
+
+	useEffect(()=> {
+		console.log(tempUnit)
+	}, [tempUnit])
 
 	useEffect(() => {
 		window.addEventListener('resize',	handleResize);
@@ -103,7 +129,6 @@ function App() {
 	useEffect(()=> {
 		setTimeout(()=> {
 			handleDrawer();
-			APILinkBuilder()
 		}, 100)
 	}, [])
 
@@ -115,18 +140,14 @@ function App() {
 		}
 	};
 
-	const APILinkBuilder = () => {
-		return(linkBuilder(userParams.searchLat, userParams.searchLng, userParams.tempUnit, userParams.date));
-	};
-
 	const parentRef =	useRef(null);
 
 	return (
 		<div className={styles.App}>
 			<Sidebar
 				data={data}
-				weatherCond={weatherCond.result}
-				source={weatherCond.source}
+				dates={dates}
+				forecastConditions={forecastConditions}
 				breakpoint={breakpoint}
 				drawerState={drawerState}
 				toggleDrawer={toggleDrawer}
@@ -134,12 +155,12 @@ function App() {
 				suggestionsState={suggestionsState}
 				setSuggestionsState={setSuggestionsState}
 				parentRef={parentRef}
-				userParams={userParams}
-				setUserParams={setUserParams}
+				searchParams={searchParams}
+				setSearchParams={setSearchParams}
 			></Sidebar>
 			{breakpoint === 'lg' || breakpoint === 'xl' ? (
 				<div className={styles.lgContainer}>
-					<Forecast data={data}></Forecast>
+					<Forecast data={data} searchParams={searchParams} tempUnit={tempUnit} forecastConditions={forecastConditions}></Forecast>
 					<Highlights data={data}></Highlights>
 					<footer className="tc pv3 ma0">
 						<p>
@@ -149,7 +170,7 @@ function App() {
 				</div>
 			) : (
 				<>
-					<Forecast data={data}></Forecast>
+					<Forecast data={data} searchParams={searchParams} tempUnit={tempUnit} forecastConditions={forecastConditions}></Forecast>
 					<Highlights data={data}></Highlights>
 					<footer className="tc pv3 ma0">
 						<p>
