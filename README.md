@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="https://app.netlify.com/sites/papaya-gaufre-0fb8ec">
+    <a href="https://papaya-gaufre-0fb8ec.netlify.app/">
       Demo
     </a>
     <span> | </span>
