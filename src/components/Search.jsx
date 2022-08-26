@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import PlacesAutocomplete from './PlacesAutocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import styles from '../styles/Search.module.css';
+import SearchRecentLocation from './SearchRecentLocation';
 
 const Search = ({
 	drawerState,
@@ -10,7 +11,9 @@ const Search = ({
 	suggestionsState,
 	setSuggestionsState,
 	searchParams,
-	setSearchParams
+	setSearchParams,
+	recents,
+	setRecents
 }) => {
 	const ref = useOnclickOutside(() => {
 		setDrawerState(false);
@@ -36,21 +39,20 @@ const Search = ({
 				setSuggestionsState={setSuggestionsState}
 				searchParams={searchParams}
 				setSearchParams={setSearchParams}
+				recents={recents}
+				setRecents={setRecents}
 			></PlacesAutocomplete>
 			{suggestionsState === false ? (
 				<ul className={styles.citiesContainer}>
-					<li>
-						<p>London</p>
-						<span className="material-icons">chevron_right</span>
-					</li>
-					<li>
-						<p>Barcelona</p>
-						<span className="material-icons">chevron_right</span>
-					</li>
-					<li>
-						<p>Long Beach</p>
-						<span className="material-icons">chevron_right</span>
-					</li>
+					{recents.map((x, i)=> 
+					<SearchRecentLocation
+						key={x.city}
+						location={x.city}
+						lat={recents[i].lat}
+						lng={recents[i].lng}
+						setSearchParams={setSearchParams}
+					>	
+					</SearchRecentLocation>)}
 				</ul>
 			) : null}
 		</div>

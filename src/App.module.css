@@ -12,6 +12,40 @@
   flex-direction: column;
 }
 
+.tempControlBar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2.5rem 0;
+}
+
+.tempControlBar button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  padding: 0;
+  height: 34px;
+  width: 34px;
+  border-radius: 100%;
+}
+
+.tempControlBar span {
+  font-size: 26px;
+  transform: translateY(3px);
+  line-height: 0;
+}
+
+.tempControlBar p {
+  margin: 0 0 0 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.tempActive {
+  background: var(--primary);
+  color: var(--backgrounddark);
+}
+
 footer {
   margin: 2rem auto;
   font-family: 'Roboto';
@@ -23,7 +57,7 @@ footer span {
   font-weight: 600;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1152px) {
   .App {
     flex-direction: row;
   }

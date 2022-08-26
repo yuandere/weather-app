@@ -1,14 +1,20 @@
-import styles from '../styles/ForecastCard.module.css'
+import styles from '../styles/Forecast.module.css'
 
-export const ForecastCard = ({ date, condition, high, low }) => {
+const ForecastCard = ({ date, source, high, low, tempUnit }) => {
   return (
     <div className={styles.forecastCard}>
-    <p className=''>Tomorrow</p>
-    <img src='../../Sleet.png' alt='sleet'></img>
-    <div className={styles.tempBar}>
-      <p>16°C</p>
-      <p>11°C</p>
+      <p>{date}</p>
+      <img src={source} alt={source}></img>
+      <div className={styles.tempBar}>
+        <p>
+          {high}°{tempUnit}
+        </p>
+        <p>
+          {low}°{tempUnit}
+        </p>
+      </div>
     </div>
-  </div>
   )
-}
+};
+
+export default ForecastCard

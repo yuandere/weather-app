@@ -117,3 +117,9 @@
 .citiesContainer li:hover span {
   color: var(--primarythree);
 }
+
+@media (min-width: 768px) and (max-width: 1151px) {
+  .drawer {
+    padding: 3rem 25%;
+  }
+}

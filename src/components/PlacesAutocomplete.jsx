@@ -8,7 +8,9 @@ import styles from '../styles/PlacesAutocomplete.module.css';
 const PlacesAutocomplete = ({ 
 	setSuggestionsState,
 	searchParams,
-	setSearchParams
+	setSearchParams,
+	recents,
+	setRecents
  }) => {
 	const {
 		ready,
@@ -44,14 +46,25 @@ const PlacesAutocomplete = ({
 			clearSuggestions();
 
 			// Get latitude and longitude via utility functions
+			// Sets location name + coords to hooks, pushes to recents list
 			getGeocode({ address: description }).then((results) => {
 				const { lat, lng } = getLatLng(results[0]);
-				console.log('📍 Coordinates: ', { lat, lng });
+				// console.log('📍 Coordinates: ', { lat, lng });
 				setSearchParams({ 
-					searchLat: Math.round((lat + Number.EPSILON) * 100) / 100,
-					searchLng: Math.round((lng + Number.EPSILON) * 100) / 100,
+					searchLat: lat,
+					searchLng: lng,
 					location: results[0].formatted_address
-				})
+				});
+				if (!recents.some(x => x.city === results[0].formatted_address)) {
+					if (recents.length === 5) {
+						recents.splice(4, 1)
+					};
+					recents.unshift({
+						city: results[0].formatted_address,
+						lat: lat,
+						lng: lng
+					});
+				};
 			});
 		};
 

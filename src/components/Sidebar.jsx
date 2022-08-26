@@ -6,7 +6,8 @@ const Sidebar = ({
 	data,
 	dates,
 	tempUnit,
-	location = 'Los Angeles TBD',
+	islocationOn,
+	getGeoLocation,
 	forecastConditions,
 	breakpoint,
 	drawerState,
@@ -16,7 +17,9 @@ const Sidebar = ({
 	setSuggestionsState,
 	parentRef,
 	searchParams,
-	setSearchParams
+	setSearchParams,
+	recents,
+	setRecents
 }) => {
 	const sourceLocation = `../../${forecastConditions[0].source}.png`;
 	const temp = Math.floor(data.current_weather.temperature);
@@ -33,6 +36,8 @@ const Sidebar = ({
 				setSuggestionsState={setSuggestionsState}
 				searchParams={searchParams}
 				setSearchParams={setSearchParams}
+				recents={recents}
+				setRecents={setRecents}
 			></Search>
 			<div className={styles.background}>
 				<img src="../../Cloud-background.png"></img>
@@ -42,7 +47,8 @@ const Sidebar = ({
 					Search for places
 				</button>
 				<button
-					className={classNames(styles.locationBtn, styles.locationBtnActive)}
+					className={islocationOn ? classNames(styles.locationBtnActive, styles.locationBtn) : styles.locationBtn}
+					onClick={() => getGeoLocation()}
 				>
 					<span className="material-icons">my_location</span>
 				</button>

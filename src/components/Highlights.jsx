@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import { windHandler } from '../utils'
 import styles from '../styles/Highlights.module.css'
 
-
-
 const Highlights = ({ 
   data, 
 }) => {
