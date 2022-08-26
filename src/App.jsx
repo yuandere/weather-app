@@ -94,7 +94,6 @@ function App() {
 		let tempLong = '';
 		tempUnit === 'F' ? tempLong = 'fahrenheit' : tempLong = 'celsius';
 		// fetch('./placeholder.json')
-		// fetch(API_URL)
 		fetch(linkBuilder(searchParams.searchLat, searchParams.searchLng, tempLong, dates.dateStart, dates.dateEnd))
 			.then((resp) => resp.json())
 			.then((res) => {
@@ -124,7 +123,7 @@ function App() {
 		window.addEventListener('resize', handleDrawer);
 		handleDrawer();
 		return () => window.removeEventListener('resize', handleDrawer);
-	}, [windowSize.width, windowSize.height, breakpoint, drawerState])
+	}, [windowSize.width, windowSize.height, breakpoint, drawerState, searchParams])
 
 	useEffect(()=> {
 		setTimeout(()=> {

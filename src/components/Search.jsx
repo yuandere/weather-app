@@ -41,6 +41,7 @@ const Search = ({
 				setSearchParams={setSearchParams}
 				recents={recents}
 				setRecents={setRecents}
+				setDrawerState={setDrawerState}
 			></PlacesAutocomplete>
 			{suggestionsState === false ? (
 				<ul className={styles.citiesContainer}>
@@ -51,6 +52,7 @@ const Search = ({
 						lat={recents[i].lat}
 						lng={recents[i].lng}
 						setSearchParams={setSearchParams}
+						setDrawerState={setDrawerState}
 					>	
 					</SearchRecentLocation>)}
 				</ul>

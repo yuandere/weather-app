@@ -42,6 +42,7 @@ This is a simple weather app that will give a 5-day forecast for your area or an
 - [Tachyons](http://tachyons.io/)
 - [use-places-autocomplete](https://github.com/wellyshen/use-places-autocomplete)
 - [react-cool-onclickoutside](https://github.com/wellyshen/react-cool-onclickoutside)
+- [Open Meteo API](https://open-meteo.com/en)
 
 ## Features
 

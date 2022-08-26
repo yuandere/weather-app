@@ -7,10 +7,9 @@ import styles from '../styles/PlacesAutocomplete.module.css';
 
 const PlacesAutocomplete = ({ 
 	setSuggestionsState,
-	searchParams,
 	setSearchParams,
-	recents,
-	setRecents
+	setDrawerState,
+	recents
  }) => {
 	const {
 		ready,
@@ -44,7 +43,7 @@ const PlacesAutocomplete = ({
 			// by setting the second parameter to "false"
 			setValue(description, false);
 			clearSuggestions();
-
+			setDrawerState(false);
 			// Get latitude and longitude via utility functions
 			// Sets location name + coords to hooks, pushes to recents list
 			getGeocode({ address: description }).then((results) => {
