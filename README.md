@@ -1,6 +1,6 @@
 <!-- Please update value in the {}  -->
 
-<h1 align="center">Weather App Challenge</h1>
+<h1 align="center">Simple Weather Forecast</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
@@ -8,7 +8,7 @@
 
 <div align="center">
   <h3>
-    <a href="">
+    <a href="https://app.netlify.com/sites/papaya-gaufre-0fb8ec">
       Demo
     </a>
     <span> | </span>
@@ -16,7 +16,7 @@
       Solution
     </a>
     <span> | </span>
-    <a href="">
+    <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
       Challenge
     </a>
   </h3>
@@ -30,6 +30,7 @@
 | --- | --- |
 | ![screenshot1](./public/screenshotdt.png) | ![screenshot2](./public/screenshotmobile.png) |
 
+This is a simple weather app that will give a 5-day forecast for your area or any chosen location, powered by Google Places API. You can also see current conditions for wind speed/direction, humidity, air pressure, and cloud cover.
 
 
 ### Built With
@@ -39,12 +40,14 @@
 - [React](https://reactjs.org/)
 - [Vite](https://vitejs.dev/)
 - [Tachyons](http://tachyons.io/)
+- [use-places-autocomplete](https://github.com/wellyshen/use-places-autocomplete)
+- [react-cool-onclickoutside](https://github.com/wellyshen/react-cool-onclickoutside)
 
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/3JFYedSOZqAxYuOCNmYD) was to build an application to complete the given user stories.
+This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
 
 ## How To Use
 
@@ -54,7 +57,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/yuandere/weather-app
 
 # Install dependencies
 $ npm install
