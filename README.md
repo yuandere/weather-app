@@ -74,8 +74,3 @@ $ npm start
 - [Custom breakpoint React Hook](https://dev.to/chilupa/usebreakpoint-react-hook-13oa)
 - [Create CSS properties that dynamically update with React & JS](https://spacejelly.dev/posts/how-to-create-css-custom-properties-that-dynamically-update-with-react-javascript/)
 - [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-
-## Contact
-
-- GitHub [@yuandere](https://github.com/yuandere)
-- Discord [@al doub#7487](https://discord.com)
